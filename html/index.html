@@ -1,0 +1,40 @@
+<p style="text-transform: uppercase;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus, magni? Molestiae facilis quaerat commodi eius!</p>
+
+<p style="text-transform: capitalize;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus autem vel accusantium, possimus unde perspiciatis quo similique aspernatur nostrum, modi eaque? Iste incidunt quis praesentium, saepe reiciendis porro, dicta voluptatibus ad similique modi quasi sapiente itaque quaerat, quos voluptas ratione! Nihil at cum minima, est quasi officia nemo aperiam velit!</p>
+
+<form id="useFormData">
+    <label for="textMessage">Ingresar el mensaje</label>
+    <input id="textMessage" name="textMessage">
+    <button>Guardar</button>
+</form>
+
+<ul id="addMessage">
+    <li>este es el mensaje</li>
+</ul>
+
+<button>Covertir primera letra de cada palabra en mayusculas</button>
+
+<script>
+    const useFormData = document.getElementById("useFormData")
+    const addMessage = document.getElementById("addMessage")
+
+    useFormData.addEventListener("submit", (event) => {
+        event.preventDefault()
+        let formDataElement = new FormData(event.target)
+        let userInputValue = formDataElement.get("textMessage")
+        let messageLi = createElementMessage(userInputValue)
+        addMessage.appendChild(messageLi)
+        clearInput("textMessage")
+    })
+
+    const createElementMessage = (message) => {
+        let messageLi = document.createElement("li")
+        let messageTextElement = document.createTextNode(message)
+        messageLi.appendChild(messageTextElement)
+        return messageLi
+    }
+
+    const clearInput = (id) => [
+        document.getElementById(id).value = ""
+    ]
+</script>
